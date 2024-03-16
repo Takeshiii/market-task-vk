@@ -11,8 +11,9 @@ import {
 } from "@mui/material";
 import { ButtonComponent } from "../Button/Button";
 import { cartActions } from "../../redux/ui/cart/cartSlice";
+import { ProductButtons } from "../ProductButtons/ProductButtons";
 
-export const CartItem: FunctionComponent<Product> = ({
+export const CartProduct: FunctionComponent<Product> = ({
   id,
   title,
   price,
@@ -35,29 +36,22 @@ export const CartItem: FunctionComponent<Product> = ({
   };
 
   return (
-    <Card>
-      <CardContent>
-        <Typography>{title}</Typography>
-        <Typography>Per one:{price}</Typography>
-        <Typography>Per all:{totalItemPrice}</Typography>
-      </CardContent>
-      <CardActions>
-        <Stack direction="row" spacing={2}>
-          <ButtonComponent
-            type="quantity"
-            onClick={handleDecreaseClick}
-            disabled={quantity === 1}
-          />
-          {quantity}
-          <ButtonComponent
-            type="quantity"
-            startIcon="add"
-            onClick={handleIncreaseClick}
-            disabled={quantity === 10}
-          />
-          <ButtonComponent type="delete" onClick={handleDeleteClick} />
+    <Card elevation={0}>
+      <Stack sx={{ display: "flex" }}>
+        <Stack spacing={1}>
+          <Typography sx={{ fontWeight: "bold" }}>{title}</Typography>
+          <Typography>Price: ${price}</Typography>
+          <Typography>Total: ${totalItemPrice}</Typography>
         </Stack>
-      </CardActions>
+        <CardActions sx={{ padding: 0 }}>
+          <ProductButtons
+            quantity={quantity}
+            handleDecreaseClick={handleDecreaseClick}
+            handleIncreaseClick={handleIncreaseClick}
+            handleDeleteClick={handleDeleteClick}
+          />
+        </CardActions>
+      </Stack>
     </Card>
   );
 };

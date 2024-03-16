@@ -6,6 +6,7 @@ import {
   CardMedia,
   Rating,
   Stack,
+  Toolbar,
   Typography,
 } from "@mui/material";
 import { Product } from "../../types/types";
@@ -14,6 +15,7 @@ import { ButtonComponent } from "../Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProductAmountById } from "../../redux/ui/cart/selectors";
 import { cartActions } from "../../redux/ui/cart/cartSlice";
+import { ProductButtons } from "../ProductButtons/ProductButtons";
 
 export const ProductCard: FunctionComponent<Product> = ({
   id,
@@ -23,6 +25,8 @@ export const ProductCard: FunctionComponent<Product> = ({
   image,
   rating,
 }) => {
+  const [expanded, setExpanded] = useState(false);
+
   const quantity = useSelector((state) => selectProductAmountById(state, id));
   const dispatch = useDispatch();
 
@@ -42,6 +46,16 @@ export const ProductCard: FunctionComponent<Product> = ({
     dispatch(cartActions.delete(id));
   };
 
+  const handleToggleDescription = () => {
+    setExpanded(!expanded);
+  };
+
+  const truncatedDescription = expanded
+    ? description
+    : `${description.substring(0, 50)}…`;
+
+  const truncatedTitle =
+    title.length > 30 ? `${title.substring(0, 30)}…` : title;
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -51,31 +65,48 @@ export const ProductCard: FunctionComponent<Product> = ({
         loading="lazy"
       />
       <CardContent>
-        <Typography>{title}</Typography>
-        <Typography>Price: {price}</Typography>
-        <Typography>{description}</Typography>
-        <Rating value={rating.rate} precision={0.5} readOnly />
-        <Typography>Left in stock: {rating.count}</Typography>
+        <Stack spacing={1}>
+          <Typography
+            sx={{
+              fontWeight: "bold",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+            title={title}>
+            {truncatedTitle}
+          </Typography>
+          <Typography>{truncatedDescription}</Typography>
+          {expanded ? (
+            <Button
+              variant="text"
+              size="small"
+              onClick={handleToggleDescription}>
+              Hide
+            </Button>
+          ) : (
+            <Button
+              variant="text"
+              size="small"
+              onClick={handleToggleDescription}>
+              More details
+            </Button>
+          )}
+          <Rating value={rating.rate} precision={0.5} readOnly />
+          <Typography sx={{ fontWeight: "bold" }}>${price}</Typography>
+          <Typography>Left in stock: {rating.count}</Typography>
+        </Stack>
       </CardContent>
       <CardActions>
         {quantity === 0 ? (
           <ButtonComponent type="cart" onClick={handleAddCLick} />
         ) : (
-          <Stack direction="row" spacing={2}>
-            <ButtonComponent
-              type="quantity"
-              onClick={handleDecreaseClick}
-              disabled={quantity === 1}
-            />
-            {quantity}
-            <ButtonComponent
-              type="quantity"
-              startIcon="add"
-              onClick={handleIncreaseClick}
-              disabled={quantity === 10}
-            />
-            <ButtonComponent type="delete" onClick={handleDeleteClick} />
-          </Stack>
+          <ProductButtons
+            quantity={quantity}
+            handleDecreaseClick={handleDecreaseClick}
+            handleIncreaseClick={handleIncreaseClick}
+            handleDeleteClick={handleDeleteClick}
+          />
         )}
       </CardActions>
     </Card>
