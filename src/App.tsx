@@ -4,7 +4,7 @@ import { ProductList } from "./components/ProductList/ProductList";
 import { Header } from "./components/Header/Header";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import { CssBaseline, Grid } from "@mui/material";
+import { CssBaseline, Grid, Pagination, Stack } from "@mui/material";
 
 store.subscribe(() => {
   console.log(store.getState());

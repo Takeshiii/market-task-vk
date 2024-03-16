@@ -3,8 +3,8 @@ import { api } from "./api";
 const productsApi = api.injectEndpoints({
   endpoints: (build) => ({
     getProducts: build.query({
-      query: () => ({
-        url: "products",
+      query: (page = 1) => ({
+        url: `products?&page=${page}`,
       }),
       providesTags: ["Product"],
     }),

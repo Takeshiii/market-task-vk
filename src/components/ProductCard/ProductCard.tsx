@@ -48,6 +48,7 @@ export const ProductCard: FunctionComponent<Product> = ({
         sx={{ height: 200, objectFit: "contain" }}
         image={image}
         component="img"
+        loading="lazy"
       />
       <CardContent>
         <Typography>{title}</Typography>
