@@ -1,4 +1,4 @@
-# Kanban board
+# Market task VK
 
 This is a test task for the VK Market team that represents a small shop application, developed using React + TypeScript + Vite. The application includes a product list with pagination and a shopping cart. It has a convenient responsive design that supports both desktop and mobile screen sizes.
 
