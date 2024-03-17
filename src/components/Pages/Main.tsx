@@ -8,7 +8,7 @@ import { Outlet } from "react-router-dom";
 
 export const Main = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Box>
