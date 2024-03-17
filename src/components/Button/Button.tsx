@@ -1,4 +1,5 @@
-import { Button, IconButton, makeStyles } from "@mui/material";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -16,13 +17,18 @@ export const ButtonComponent = ({ type, startIcon, onClick, disabled }) => {
         sx={{
           paddingLeft: 3,
         }}
+        aria-label="Product Quantity"
       />
     );
   }
 
   if (type === "cart") {
     return (
-      <Button onClick={onClick} variant="contained" sx={{ width: "100%" }}>
+      <Button
+        variant="contained"
+        onClick={onClick}
+        sx={{ width: "100%" }}
+        aria-label="Add to cart">
         Add to cart
       </Button>
     );
@@ -30,7 +36,7 @@ export const ButtonComponent = ({ type, startIcon, onClick, disabled }) => {
 
   if (type === "delete") {
     return (
-      <IconButton onClick={onClick}>
+      <IconButton onClick={onClick} aria-label="Delete product">
         <DeleteIcon />
       </IconButton>
     );

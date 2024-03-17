@@ -1,9 +1,10 @@
+import { ChangeEvent, FunctionComponent, useState } from "react";
 import { useGetProductsQuery } from "../../redux/service/products";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Pagination from "@mui/material/Pagination";
 import { ProductCard } from "../ProductCard/ProductCard";
 import { Product } from "../../types/types";
-import { ChangeEvent, FunctionComponent, useEffect, useState } from "react";
-import { Box, Grid, Pagination, Toolbar } from "@mui/material";
-import { Link } from "react-router-dom";
 
 export const ProductList: FunctionComponent = () => {
   const [page, setPage] = useState(1);
@@ -33,13 +34,17 @@ export const ProductList: FunctionComponent = () => {
         justifyContent: "center",
         alignItems: "center",
       }}>
-      <Grid
-        container
-        spacing={3}
-        sx={{ justifyContent: "space-between", flexWrap: "wrap" }}>
+      <Grid container spacing={3}>
         {currentProducts?.map((product: Product) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-            <ProductCard {...product} />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}>
+              <ProductCard {...product} />
+            </Box>
           </Grid>
         ))}
       </Grid>
@@ -48,6 +53,7 @@ export const ProductList: FunctionComponent = () => {
         color="primary"
         page={page}
         onChange={handleChange}
+        aria-label="Products pagination"
       />
     </Box>
   );

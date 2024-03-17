@@ -1,18 +1,16 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import { IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 export const MobileDrawer = () => {
   const [open, setOpen] = useState(false);
@@ -25,12 +23,24 @@ export const MobileDrawer = () => {
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to={"/products"}>
+          <ListItemButton
+            component={Link}
+            to={"/products"}
+            aria-label="Go to products page">
+            <ListItemIcon>
+              <ShoppingBagOutlinedIcon />
+            </ListItemIcon>
             <ListItemText primary="Products" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to={"/cart"}>
+          <ListItemButton
+            component={Link}
+            to={"/cart"}
+            aria-label="Go to cart page">
+            <ListItemIcon>
+              <ShoppingCartOutlinedIcon />
+            </ListItemIcon>
             <ListItemText primary="Cart" />
           </ListItemButton>
         </ListItem>
@@ -40,7 +50,10 @@ export const MobileDrawer = () => {
 
   return (
     <>
-      <IconButton onClick={toggleDrawer(true)} color="inherit">
+      <IconButton
+        onClick={toggleDrawer(true)}
+        color="inherit"
+        aria-label="Open menu">
         <MenuIcon />
       </IconButton>
       <Drawer open={open} onClose={toggleDrawer(false)}>

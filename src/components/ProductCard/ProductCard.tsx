@@ -1,21 +1,18 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Rating,
-  Stack,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import { Product } from "../../types/types";
 import { FunctionComponent, useState } from "react";
-import { ButtonComponent } from "../Button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { selectProductAmountById } from "../../redux/ui/cart/selectors";
 import { cartActions } from "../../redux/ui/cart/cartSlice";
+import { selectProductAmountById } from "../../redux/ui/cart/selectors";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import CardActions from "@mui/material/CardActions";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { ButtonComponent } from "../Button/Button";
 import { ProductButtons } from "../ProductButtons/ProductButtons";
+import { Product } from "../../types/types";
 
 export const ProductCard: FunctionComponent<Product> = ({
   id,

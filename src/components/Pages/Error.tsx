@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 
 export const Error = () => {
   const error = useRouteError();
@@ -34,7 +33,7 @@ export const Error = () => {
           {error.statusText || error.message}
         </Typography>
       </Box>
-      <Button component={Link} to="/">
+      <Button component={Link} to="/" aria-label="Go to main page">
         take me home
       </Button>
     </Container>
