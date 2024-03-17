@@ -7,6 +7,9 @@ const productsApi = api.injectEndpoints({
         url: `products?page=${page}`,
       }),
       providesTags: ["Product"],
+      extraOptions: {
+        maxRetries: 5,
+      },
     }),
   }),
 });

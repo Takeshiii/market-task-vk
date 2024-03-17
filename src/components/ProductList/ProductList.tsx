@@ -3,21 +3,42 @@ import { useGetProductsQuery } from "../../redux/service/products";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Pagination from "@mui/material/Pagination";
+import CircularProgress from "@mui/material/CircularProgress";
 import { ProductCard } from "../ProductCard/ProductCard";
 import { Product } from "../../types/types";
 
 export const ProductList: FunctionComponent = () => {
   const [page, setPage] = useState(1);
 
-  const { data: products, isLoading } = useGetProductsQuery(page);
+  const {
+    data: products,
+    isLoading,
+    isFetching,
+    isError,
+    error,
+  } = useGetProductsQuery(page);
+
+  if (isLoading || isFetching) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}>
+        <CircularProgress />;
+      </Box>
+    );
+  }
+
+  if (isError) {
+    throw error;
+  }
 
   const handleChange = (event: ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   const startIndex = (page - 1) * 8;
   const endIndex = startIndex + 8;
