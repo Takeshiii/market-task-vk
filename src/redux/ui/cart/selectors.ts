@@ -1,6 +1,7 @@
 import { RootState } from "../../store";
 import { CartItem } from "../../../types/types";
 
+//Создаем селекторы для упрощения доступа к данным
 const selectCartModule = (state: RootState) => state.cart;
 
 export const selectCartItems = (state: RootState): CartItem[] =>

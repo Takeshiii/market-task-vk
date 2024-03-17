@@ -3,6 +3,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { api } from "./service/api";
 import cartReducer from "./ui/cart/cartSlice";
 
+//Создаем redux стор и настраиваем для работы с api
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,

@@ -1,5 +1,6 @@
 import { api } from "./api";
 
+//Добавляем в наш api эндпоинт с товарами
 const productsApi = api.injectEndpoints({
   endpoints: (build) => ({
     getProducts: build.query({

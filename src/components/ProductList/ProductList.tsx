@@ -8,8 +8,10 @@ import { ProductCard } from "../ProductCard/ProductCard";
 import { Product } from "../../types/types";
 
 export const ProductList: FC = () => {
+  //Данный useState используется для управления текущей страницей
   const [page, setPage] = useState<number>(1);
 
+  //Используем RTK Query хук для получения данных о товарах
   const {
     data: products,
     isLoading,
@@ -18,6 +20,7 @@ export const ProductList: FC = () => {
     error,
   } = useGetProductsQuery(page);
 
+  //Отображаем лоадер если данные грузятся или обновляются
   if (isLoading || isFetching) {
     return (
       <Box
@@ -32,6 +35,7 @@ export const ProductList: FC = () => {
     );
   }
 
+  //В случае ошибки будет редирект на страницу Error
   if (isError) {
     throw error;
   }

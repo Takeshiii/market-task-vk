@@ -4,6 +4,7 @@ import { Error } from "../components/Pages/Error";
 import { ProductList } from "../components/ProductList/ProductList";
 import { Cart } from "../components/Cart/Cart";
 
+//Создаем роутер приложения и определяем маршруты
 export const router = createBrowserRouter([
   {
     path: "/",

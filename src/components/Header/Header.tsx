@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { MobileDrawer } from "../Drawer/Drawer";
 
 export const Header: FC = () => {
+  //отображаем меню навигации на устройствах шириной менее 900px
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 

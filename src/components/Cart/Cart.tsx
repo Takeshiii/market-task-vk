@@ -13,6 +13,7 @@ import { CartProduct } from "../CartProduct/CartProduct";
 import { CartItem } from "../../types/types";
 
 export const Cart: FC = () => {
+  //Получаем с помощью хука useAppSelector данные из состояния корзины списка товаров и общей стоимости
   const cartItems: CartItem[] = useAppSelector(selectCartItems);
   const totalPrice: number = useAppSelector(selectTotalPrice);
 

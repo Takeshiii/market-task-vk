@@ -22,26 +22,33 @@ export const ProductCard: FC<Product> = ({
   image,
   rating,
 }) => {
+  //Используем данный useState для управление отображением описания товара
   const [expanded, setExpanded] = useState<boolean>(false);
 
+  //Используем хук useAppSelector для получения количества товара в корзине
   const quantity: number = useAppSelector((state) =>
     selectProductAmountById(state, id)
   );
 
+  //Используем хук useAppDispatch для отправки действий в redux стор
   const dispatch = useAppDispatch();
 
+  //Добавление товара
   const handleAddCLick = () => {
     dispatch(cartActions.add({ id, title, price, quantity }));
   };
 
+  //Увеличение количества товара
   const handleIncreaseClick = () => {
     dispatch(cartActions.increment(id));
   };
 
+  //Уменьшение количества товара
   const handleDecreaseClick = () => {
     dispatch(cartActions.decrement(id));
   };
 
+  //Удаление товара
   const handleDeleteClick = () => {
     dispatch(cartActions.delete(id));
   };

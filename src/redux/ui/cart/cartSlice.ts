@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { CartItem, CartState } from "../../../types/types";
 
+//Используем sessionStorage для сохранения состояния корзины при обновлении страницы
 const cartItems = JSON.parse(sessionStorage.getItem("cartItems") || "[]");
 const totalPrice = JSON.parse(sessionStorage.getItem("totalPrice") || "0");
 
@@ -14,6 +15,7 @@ const initialState: CartState = {
   totalPrice: totalPrice,
 };
 
+//Создаем слайс состояния корзины с обработчиками действий
 const { reducer, actions } = createSlice({
   name: "cart",
   initialState,
