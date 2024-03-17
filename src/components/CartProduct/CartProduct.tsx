@@ -1,20 +1,15 @@
-import { FunctionComponent } from "react";
-import { useDispatch } from "react-redux";
+import { FC } from "react";
+import { useAppDispatch } from "../../redux/hooks/hooks";
 import { cartActions } from "../../redux/ui/cart/cartSlice";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { ProductButtons } from "../ProductButtons/ProductButtons";
-import { Product } from "../../types/types";
+import { CartItem } from "../../types/types";
 
-export const CartProduct: FunctionComponent<Product> = ({
-  id,
-  title,
-  price,
-  quantity,
-}) => {
-  const dispatch = useDispatch();
+export const CartProduct: FC<CartItem> = ({ id, title, price, quantity }) => {
+  const dispatch = useAppDispatch();
 
   const totalItemPrice = (quantity * price).toFixed(2);
 

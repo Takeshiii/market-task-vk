@@ -1,10 +1,17 @@
+import { FC } from "react";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ButtonComponentProps } from "../../types/types";
 
-export const ButtonComponent = ({ type, startIcon, onClick, disabled }) => {
+export const ButtonComponent: FC<ButtonComponentProps> = ({
+  type,
+  startIcon,
+  disabled,
+  onClick,
+}) => {
   const icon = startIcon === "add" ? <AddIcon /> : <RemoveIcon />;
 
   if (type === "quantity") {

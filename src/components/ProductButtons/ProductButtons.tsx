@@ -1,8 +1,10 @@
+import { FC } from "react";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { ButtonComponent } from "../Button/Button";
+import { ProductButtonProps } from "../../types/types";
 
-export const ProductButtons = ({
+export const ProductButtons: FC<ProductButtonProps> = ({
   quantity,
   handleDecreaseClick,
   handleIncreaseClick,

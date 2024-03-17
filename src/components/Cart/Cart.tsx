@@ -1,5 +1,5 @@
-import { FunctionComponent } from "react";
-import { useSelector } from "react-redux";
+import { FC } from "react";
+import { useAppSelector } from "../../redux/hooks/hooks";
 import {
   selectCartItems,
   selectTotalPrice,
@@ -10,11 +10,11 @@ import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { CartProduct } from "../CartProduct/CartProduct";
-import { Product } from "../../types/types";
+import { CartItem } from "../../types/types";
 
-export const Cart: FunctionComponent<Product> = () => {
-  const cartItems = useSelector(selectCartItems);
-  const totalPrice = useSelector(selectTotalPrice);
+export const Cart: FC = () => {
+  const cartItems: CartItem[] = useAppSelector(selectCartItems);
+  const totalPrice: number = useAppSelector(selectTotalPrice);
 
   return (
     <Box
@@ -38,7 +38,7 @@ export const Cart: FunctionComponent<Product> = () => {
               <Typography>Your cart is empty now, let's fix that ;)</Typography>
             ) : (
               <>
-                {cartItems.map((item) => (
+                {cartItems.map((item: CartItem) => (
                   <CartProduct key={item.id} {...item} />
                 ))}
                 <Typography variant="h6">Total cost: ${totalPrice}</Typography>

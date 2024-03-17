@@ -1,10 +1,17 @@
-const selectCartModule = (state) => state.cart;
+import { RootState } from "../../store";
+import { CartItem } from "../../../types/types";
 
-export const selectCartItems = (state) => selectCartModule(state).cartItems;
+const selectCartModule = (state: RootState) => state.cart;
 
-export const selectTotalPrice = (state) =>
-  selectCartModule(state).totalPrice.toFixed(2);
+export const selectCartItems = (state: RootState): CartItem[] =>
+  selectCartModule(state).cartItems;
 
-export const selectProductAmountById = (state, productId) =>
+export const selectTotalPrice = (state: RootState): number =>
+  parseFloat(selectCartModule(state).totalPrice.toFixed(2));
+
+export const selectProductAmountById = (
+  state: RootState,
+  productId: number
+): number =>
   selectCartModule(state).cartItems.find((item) => item.id === productId)
     ?.quantity || 0;

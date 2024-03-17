@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { Outlet } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -9,7 +10,7 @@ import { Header } from "../Header/Header";
 import { ProductList } from "../ProductList/ProductList";
 import { Cart } from "../Cart/Cart";
 
-export const Main = () => {
+export const Main: FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 

@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { useRouteError } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Container from "@mui/material/Container";
@@ -5,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-export const Error = () => {
+export const Error: FC = () => {
   const error = useRouteError();
   console.error(error);
 

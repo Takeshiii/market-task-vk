@@ -1,5 +1,5 @@
-import { FunctionComponent, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { FC, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { cartActions } from "../../redux/ui/cart/cartSlice";
 import { selectProductAmountById } from "../../redux/ui/cart/selectors";
 import Button from "@mui/material/Button";
@@ -14,7 +14,7 @@ import { ButtonComponent } from "../Button/Button";
 import { ProductButtons } from "../ProductButtons/ProductButtons";
 import { Product } from "../../types/types";
 
-export const ProductCard: FunctionComponent<Product> = ({
+export const ProductCard: FC<Product> = ({
   id,
   title,
   price,
@@ -22,13 +22,16 @@ export const ProductCard: FunctionComponent<Product> = ({
   image,
   rating,
 }) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState<boolean>(false);
 
-  const quantity = useSelector((state) => selectProductAmountById(state, id));
-  const dispatch = useDispatch();
+  const quantity: number = useAppSelector((state) =>
+    selectProductAmountById(state, id)
+  );
+
+  const dispatch = useAppDispatch();
 
   const handleAddCLick = () => {
-    dispatch(cartActions.add({ id, title, price }));
+    dispatch(cartActions.add({ id, title, price, quantity }));
   };
 
   const handleIncreaseClick = () => {
@@ -47,12 +50,13 @@ export const ProductCard: FunctionComponent<Product> = ({
     setExpanded(!expanded);
   };
 
-  const truncatedDescription = expanded
+  const truncatedDescription: string = expanded
     ? description
     : `${description.substring(0, 50)}…`;
 
-  const truncatedTitle =
+  const truncatedTitle: string =
     title.length > 30 ? `${title.substring(0, 30)}…` : title;
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia

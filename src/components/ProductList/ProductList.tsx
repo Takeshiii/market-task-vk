@@ -1,4 +1,4 @@
-import { ChangeEvent, FunctionComponent, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import { useGetProductsQuery } from "../../redux/service/products";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -7,8 +7,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { ProductCard } from "../ProductCard/ProductCard";
 import { Product } from "../../types/types";
 
-export const ProductList: FunctionComponent = () => {
-  const [page, setPage] = useState(1);
+export const ProductList: FC = () => {
+  const [page, setPage] = useState<number>(1);
 
   const {
     data: products,
@@ -40,11 +40,11 @@ export const ProductList: FunctionComponent = () => {
     setPage(value);
   };
 
-  const startIndex = (page - 1) * 8;
-  const endIndex = startIndex + 8;
+  const startIndex: number = (page - 1) * 8;
+  const endIndex: number = startIndex + 8;
   const currentProducts = products?.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil((products?.length || 0) / 8);
+  const totalPages: number = Math.ceil((products?.length || 0) / 8);
 
   return (
     <Box
