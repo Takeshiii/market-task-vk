@@ -1,30 +1,35 @@
-# React + TypeScript + Vite
+# Kanban board
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a test task for the VK Market team that represents a small shop application, developed using React + TypeScript + Vite. The application includes a product list with pagination and a shopping cart. It has a convenient responsive design that supports both desktop and mobile screen sizes.
 
-Currently, two official plugins are available:
+## How to Use:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.  Install Dependencies:
 
-## Expanding the ESLint configuration
+    - After downloading the project, run the command `npm install` to install necessary dependencies.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2.  Launch:
 
-- Configure the top-level `parserOptions` property like this:
+    - Launch the application in development mode with the command `npm run dev`.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+3.  Build:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+    - Create an optimized version of the application using the command `npm run build`. The generated files will be available in the `dist` folder.
+
+4.  Linting:
+
+    - Execute the command `npm run lint` to check the code for compliance with standards and fix potential issues.
+
+## Technology Stack:
+
+- TypeScript
+
+- React
+
+- Redux Toolkit
+
+- RTK Query
+
+- React Router DOM
+
+- MUI (Material-UI)
